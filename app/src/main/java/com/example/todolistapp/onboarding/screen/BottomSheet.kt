@@ -12,7 +12,12 @@ import com.example.todolistapp.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class CompleteTask : Fragment() {
+/**
+ * A simple [Fragment] subclass.
+ * Use the [BottomSheet.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class BottomSheet : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -29,14 +34,20 @@ class CompleteTask : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_complete_task, container, false)
+        return inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+        }
+
+
+
     companion object {
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            CompleteTask().apply {
+            BottomSheet().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.todolistapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -15,10 +14,9 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.Window
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
-
+import java.util.*
 
 
 class AppBar : Fragment(R.layout.activity_main) {
@@ -71,31 +69,18 @@ class AppBar : Fragment(R.layout.activity_main) {
         context?.let { ctx ->
             val dialog = Dialog(ctx)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.bottomsheetlayout)
+            dialog.setContentView(R.layout.fragment_bottom_sheet)
 
-            val editLayout: LinearLayout = dialog.findViewById(R.id.layoutEdit)
-            val shareLayout: LinearLayout = dialog.findViewById(R.id.layoutShare)
-            val uploadLayout: LinearLayout = dialog.findViewById(R.id.layoutUpload)
-            val printLayout: LinearLayout = dialog.findViewById(R.id.layoutPrint)
+            val nama_task = dialog.findViewById<EditText>(R.id.nama_task)
+            val deskripsi_task = dialog.findViewById<EditText>(R.id.deskripsi_task)
+            val datePicker = dialog.findViewById<DatePicker>(R.id.datePicker)
+            val submit = dialog.findViewById<Button>(R.id.submit)
 
-            editLayout.setOnClickListener {
+            nama_task.setOnClickListener{
                 dialog.dismiss()
-                Toast.makeText(ctx, "Edit is Clicked", Toast.LENGTH_SHORT).show()
             }
-
-            shareLayout.setOnClickListener {
+            deskripsi_task.setOnClickListener{
                 dialog.dismiss()
-                Toast.makeText(ctx, "Share is Clicked", Toast.LENGTH_SHORT).show()
-            }
-
-            uploadLayout.setOnClickListener {
-                dialog.dismiss()
-                Toast.makeText(ctx, "Upload is Clicked", Toast.LENGTH_SHORT).show()
-            }
-
-            printLayout.setOnClickListener {
-                dialog.dismiss()
-                Toast.makeText(ctx, "Print is Clicked", Toast.LENGTH_SHORT).show()
             }
 
             dialog.show()

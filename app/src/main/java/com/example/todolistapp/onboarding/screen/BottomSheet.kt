@@ -5,53 +5,51 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.fragment.app.DialogFragment
 import com.example.todolistapp.R
+import kotlinx.android.synthetic.main.bottomsheetlayout.*
+import kotlinx.android.synthetic.main.fragment_bottom_sheet.*
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [BottomSheet.newInstance] factory method to
- * create an instance of this fragment.
- */
-class BottomSheet : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class BottomSheet : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
+        val view = inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
+
+        val nama_task = view.findViewById<EditText>(R.id.nama_task)
+        val deskripsi_task = view.findViewById<EditText>(R.id.deskripsi_task)
+
+
+
+
+        val datePicker = view.findViewById<DatePicker>(R.id.datePicker)
+        val submit = view.findViewById<Button>(R.id.submit)
+
+        val currentDate = Calendar.getInstance()
+        val year = currentDate.get(Calendar.YEAR)
+        val month = currentDate.get(Calendar.MONTH)
+        val day = currentDate.get(Calendar.DAY_OF_MONTH)
+
+        datePicker.init(year, month, day, null)
+
+
+
+        submit.setOnClickListener {
+            val name = nama_task.text.toString()
+            val deskripsi = deskripsi_task.text.toString()
+
+            val selectedYear = datePicker.year
+            val selectedMonth = datePicker.month
+            val selectedDay = datePicker.dayOfMonth
+
+
+            dismiss()
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
+        return view
         }
 
-
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BottomSheet().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
-class AppBar : Fragment(R.layout.activity_main) {
+class AppBar : Fragment() {
     private lateinit var navview: BottomNavigationView
     private lateinit var plusButton: FloatingActionButton
     private lateinit var bottomSheet: View

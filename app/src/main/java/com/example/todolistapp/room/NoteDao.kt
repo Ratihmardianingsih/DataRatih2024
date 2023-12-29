@@ -11,7 +11,7 @@ interface  NoteDao {
     @Insert
     fun addNote(note: Note)
 
-    @Query("SELECT * FROM note_tb ORDER BY id DESC")
+    @Query("SELECT * FROM note_tb ORDER BY id ASC")
     fun readAllNote(): LiveData<List<Note>>
 
 //    @Update

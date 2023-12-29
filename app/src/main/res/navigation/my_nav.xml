@@ -14,7 +14,7 @@
             app:destination="@id/viewPagerFragment" />
         <action
             android:id="@+id/action_splashFragment2_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/appbarFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -23,14 +23,15 @@
         tools:layout="@layout/fragment_view_pager" >
         <action
             android:id="@+id/action_viewPagerFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/appbarFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/appbarFragment"
         android:name="com.example.todolistapp.onboarding.screen.AppBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:tag="appbar" />
+        android:tag="appbar" >
+    </fragment>
     <fragment
         android:id="@+id/list_task"
         android:name="com.example.todolistapp.onboarding.screen.ListTask"
@@ -41,5 +42,8 @@
         android:name="com.example.todolistapp.onboarding.screen.CompleteTask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <action
+        android:id="@+id/action_bottomSheetFragment_to_fragmentListTask"
+        app:destination="@id/list_task" />
 
 </navigation>

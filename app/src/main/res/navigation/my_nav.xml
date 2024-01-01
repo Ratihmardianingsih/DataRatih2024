@@ -39,7 +39,7 @@
         android:layout_height="match_parent"/>
     <fragment
         android:id="@+id/complete_task"
-        android:name="com.example.todolistapp.onboarding.screen.CompleteTask"
+        android:name="com.example.todolistapp.onboarding.screen.CalendarFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <action

@@ -9,6 +9,7 @@ import com.example.todolistapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.text.TextUtils
@@ -32,6 +33,7 @@ class AppBar : Fragment() {
 
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +48,7 @@ class AppBar : Fragment() {
         navview.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_notes -> replaceFragment(ListTask())
-                R.id.nav_done -> replaceFragment(CompleteTask())
+                R.id.nav_done -> replaceFragment(CalendarFragment())
             }
             true
         }
@@ -61,6 +63,10 @@ class AppBar : Fragment() {
         fragmentTransaction.replace(R.id.appbar, fragment)
         fragmentTransaction.commit()
     }
+//    private fun navigateToCalendarActivity() {
+//        val intent = Intent(requireContext(), CalendarActivity::class.java)
+//        startActivity(intent)
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -82,7 +88,7 @@ class AppBar : Fragment() {
 
             inputNamaTask = dialog.findViewById(R.id.add_nama_task)
             inputDeskripsiTask = dialog.findViewById(R.id.add_deskripsi_task)
-            val datePicker = dialog.findViewById<DatePicker>(R.id.datePicker)
+//            val datePicker = dialog.findViewById<DatePicker>(R.id.datePicker)
             val submit = dialog.findViewById<Button>(R.id.submit)
 
             noteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
@@ -91,6 +97,7 @@ class AppBar : Fragment() {
                 insertNote()
                 dialog.dismiss()
             }
+
 
             dialog.show()
             dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -102,11 +109,11 @@ class AppBar : Fragment() {
 
     private fun insertNote() {
 
-        val nama_task = inputNamaTask.text.toString()
-        val deskripsi_task = inputDeskripsiTask.text.toString()
+        val namatask = inputNamaTask.text.toString()
+        val deskripsitask = inputDeskripsiTask.text.toString()
 
-        if(inputCheck(nama_task, deskripsi_task)){
-            val note = Note(0, nama_task, deskripsi_task)
+        if(inputCheck(namatask, deskripsitask)){
+            val note = Note(0, namatask, deskripsitask)
 
             noteViewModel.addNote(note)
             Toast.makeText(requireContext(), "Success", Toast.LENGTH_LONG).show()
@@ -117,14 +124,10 @@ class AppBar : Fragment() {
             Toast.makeText(requireContext(), "isi form nya wir", Toast.LENGTH_LONG).show()
 
         }
+
     }
 
     private fun inputCheck(nama_task:String, deskripsi_task:String): Boolean{
-        return !(TextUtils.isEmpty(nama_task) && TextUtils.isEmpty(deskripsi_task))
-
-
-
+        return !(TextUtils.isEmpty(nama_task) || TextUtils.isEmpty(deskripsi_task))
     }
-
-
 }
